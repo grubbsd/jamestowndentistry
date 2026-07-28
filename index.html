@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics="">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&amp;family=Mulish:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+.jfd{--sage-50:#f4f7ed;--sage-100:#e7f0d7;--sage-200:#d5e4bd;--sage-300:#c3d69f;--sage-400:#b0c791;--sage-500:#a6bd84;--sage-600:#8ca263;--sage-700:#6f7f4e;--sage-800:#55613c;--sage-900:#3f482d;--sage-wall:#8fae7b;--cream-50:#fbf9f2;--cream-100:#f5f1e6;--cream-200:#ebe6d7;--ink-900:#33322c;--ink-700:#4f4d45;--ink-500:#6e6c62;--ink-300:#9b998e;--border:#e3ddce;--border-strong:#cdc6b4;--tan:#e3d4ac;--tan-2:#d9c795;--tan-bd:#d3c294;--serif:'Cormorant Garamond',Georgia,serif;--sans:'Mulish',system-ui,sans-serif;--mono:ui-monospace,SFMono-Regular,Menlo,monospace;--ease:cubic-bezier(.22,.61,.36,1);--shadow-xs:0 1px 2px rgba(63,72,45,.06);--shadow-sm:0 2px 10px rgba(63,72,45,.08);--shadow-md:0 12px 34px rgba(63,72,45,.12);--shadow-lg:0 24px 60px rgba(63,72,45,.16);--shadow-sage:0 14px 36px rgba(140,162,99,.32);font-family:var(--sans);color:var(--ink-700);background:var(--cream-50);line-height:1.5;-webkit-font-smoothing:antialiased}
+.jfd *{box-sizing:border-box}
+.jfd button{font:inherit;cursor:pointer;color:inherit}
+.jfd img{display:block;max-width:100%}
+.jfd h1,.jfd h2,.jfd h3,.jfd h4,.jfd p,.jfd ul{margin:0}
+.wrap{max-width:1200px;margin:0 auto;padding-left:clamp(20px,4vw,48px);padding-right:clamp(20px,4vw,48px)}
+.narrow{max-width:840px}
+.sec{padding-top:clamp(60px,8vw,120px);padding-bottom:clamp(60px,8vw,120px)}
+.disp{font-family:var(--serif);font-weight:500;letter-spacing:-.02em;line-height:1.06;color:var(--ink-900)}
+.disp-xl{font-size:clamp(3rem,6vw,5.25rem)}
+.disp-lg{font-size:clamp(2.4rem,4.4vw,3.6rem)}
+.disp-md{font-size:clamp(2rem,3.2vw,2.7rem)}
+.disp-sm{font-size:1.65rem}
+.serif-i{font-family:var(--serif);font-style:italic}
+.eyebrow{font-family:var(--sans);font-weight:700;font-size:.8125rem;letter-spacing:.22em;text-transform:uppercase;color:var(--sage-600);margin:0}
+.lead{font-size:1.125rem;line-height:1.75;color:var(--ink-700)}
+.muted{color:var(--ink-500)}
+.center{text-align:center}
+.mxauto{margin-left:auto;margin-right:auto}
+.btn{display:inline-flex;align-items:center;gap:9px;border:none;border-radius:999px;font-weight:700;font-size:.98rem;padding:14px 26px;transition:background .24s var(--ease),box-shadow .24s var(--ease),transform .12s var(--ease),color .24s var(--ease);text-decoration:none;line-height:1}
+.btn .i{width:18px;height:18px;transition:margin .24s var(--ease)}
+.btn:hover .i{margin-left:4px;margin-right:-4px}
+.btn-primary{background:var(--sage-500);color:#fff;box-shadow:var(--shadow-sage)}
+.btn-primary:hover{background:var(--sage-600)}
+.btn-primary:active{transform:translateY(1px)}
+.btn-secondary{background:transparent;color:var(--sage-800);border:1px solid var(--sage-300)}
+.btn-secondary:hover{background:var(--sage-100)}
+.btn-white{background:#fff;color:var(--sage-700);box-shadow:var(--shadow-lg)}
+.btn-white:hover{background:var(--sage-50)}
+.btn-ghost{background:transparent;color:var(--sage-700);padding:8px 0}
+.btn-ghost:hover{color:var(--sage-900)}
+.promo{background:var(--sage-800);color:#fff;text-align:center;font-size:.85rem;font-weight:600;letter-spacing:.02em;padding:9px 16px}
+.hdr{position:sticky;top:0;z-index:60;background:rgba(251,249,242,.86);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--border);transition:background .35s var(--ease),box-shadow .35s var(--ease),border-color .35s var(--ease)}
+.hdr-in{max-width:1200px;margin:0 auto;padding:13px clamp(20px,4vw,48px);display:flex;align-items:center;justify-content:space-between;gap:20px;transition:padding .35s var(--ease)}
+.hdr.shrunk{background:rgba(251,249,242,.94);box-shadow:var(--shadow-sm);border-color:transparent}
+.hdr.shrunk .hdr-in{padding-top:6px;padding-bottom:6px}
+.brand{display:flex;align-items:center;gap:12px;background:none;border:none;padding:0;flex-shrink:0}
+.brand-mark{height:55px;width:auto;transition:height .35s var(--ease)}
+.brand-word{height:72px;width:auto;transition:height .35s var(--ease)}
+.hdr.shrunk .brand-mark{height:42px}
+.hdr.shrunk .brand-word{height:52px}
+.route-veil{position:fixed;inset:0;z-index:200;background:var(--sage-800);transform:translateY(100%);pointer-events:none;display:flex;align-items:center;justify-content:center}
+.route-veil img{height:66px;width:auto;opacity:.92}
+.nav{display:flex;align-items:center;gap:4px}
+.navlink{background:none;border:none;font-weight:600;font-size:.95rem;color:var(--ink-700);padding:9px 15px;border-radius:999px;transition:color .2s var(--ease),background .2s var(--ease)}
+.navlink:hover{color:var(--sage-800);background:var(--sage-50)}
+.navlink.on{color:var(--sage-900);background:var(--sage-100)}
+.nav-phone{margin-left:10px;font-weight:800;color:var(--sage-800);text-decoration:none;white-space:nowrap;font-size:.95rem}
+.nav-cta{margin-left:8px;padding:11px 22px}
+.burger{display:none;flex-direction:column;gap:5px;background:none;border:none;padding:10px}
+.burger span{display:block;width:24px;height:2px;background:var(--sage-800);border-radius:2px;transition:.24s var(--ease)}
+.hero{position:relative;background:var(--sage-wall);overflow:hidden}
+.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:right center;transform:scale(1.3);transform-origin:right center}
+.hero-veil{position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(143,174,123,.97) 0%,rgba(143,174,123,.86) 32%,rgba(143,174,123,.28) 62%,rgba(143,174,123,0) 100%)}
+.hero-particles{position:absolute;inset:0;z-index:2;width:100%;height:100%;pointer-events:none}
+.hero-in{position:relative;z-index:3;max-width:1200px;margin:0 auto;padding:clamp(64px,9vw,120px) clamp(20px,4vw,48px);min-height:520px;display:flex;align-items:center}
+.hero-copy{max-width:560px}
+.subhero{background:var(--sage-100)}
+.subhero-in{max-width:840px;margin:0 auto;padding:clamp(56px,8vw,104px) clamp(20px,4vw,48px);text-align:center}
+.svc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.svc-card{background:var(--sage-800);border:none;border-radius:20px;padding:28px 26px;text-align:left;display:flex;flex-direction:column;gap:14px;min-height:230px;transition:background .28s var(--ease),transform .28s var(--ease),box-shadow .28s var(--ease)}
+.svc-card:hover{background:var(--sage-900);transform:translateY(-4px);box-shadow:var(--shadow-md)}
+.svc-label{font-family:var(--sans);font-weight:800;font-size:1.23rem;letter-spacing:.2em;text-transform:uppercase;color:var(--sage-200)}
+.svc-desc{font-size:1rem;line-height:1.6;color:rgba(255,255,255,.85);flex:1}
+.svc-more{display:inline-flex;align-items:center;gap:8px;color:#fff;font-weight:700;font-size:.92rem}
+.svc-more .i{width:17px;height:17px;transition:margin .24s var(--ease)}
+.svc-card:hover .svc-more .i{margin-left:4px;margin-right:-4px}
+.tan-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.tan-card{background:var(--tan);border:1px solid var(--tan-bd);border-radius:20px;padding:26px 28px;display:flex;align-items:center;justify-content:space-between;gap:14px;text-align:left;transition:background .26s var(--ease),transform .26s var(--ease),box-shadow .26s var(--ease)}
+.tan-card:hover{background:var(--tan-2);transform:translateY(-4px);box-shadow:var(--shadow-sm)}
+.tan-title{font-family:var(--serif);font-size:2rem;font-weight:600;color:var(--ink-900);line-height:1}
+.tan-arrow{width:38px;height:38px;border-radius:999px;background:rgba(255,255,255,.55);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.tan-arrow .i{width:19px;height:19px;color:var(--sage-800);transition:margin .24s var(--ease)}
+.tan-card:hover .tan-arrow .i{margin-left:3px;margin-right:-3px}
+.doc-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.doc-card{background:#fff;border:1px solid var(--border);border-radius:20px;overflow:hidden;box-shadow:var(--shadow-xs);transition:transform .26s var(--ease),border-color .26s var(--ease)}
+.doc-card:hover{transform:translateY(-4px);border-color:var(--sage-300)}
+.doc-photo{aspect-ratio:1/1;background:var(--sage-100);overflow:hidden}
+.doc-photo img{width:100%;height:100%;object-fit:cover;object-position:top center}
+.doc-body{padding:18px 20px}
+.doc-name{font-family:var(--serif);font-size:1.5rem;font-weight:600;color:var(--ink-900)}
+.doc-role{font-size:.8rem;color:var(--sage-700);text-transform:uppercase;letter-spacing:.14em;font-weight:700;margin-top:3px}
+.quote{background:#fff;border:1px solid var(--border);border-radius:20px;padding:30px;box-shadow:var(--shadow-xs);break-inside:avoid}
+.quote.sage{background:var(--sage-100);border-color:var(--sage-200)}
+.quote-mark{font-family:var(--serif);font-size:3.4rem;color:var(--sage-400);line-height:.5;height:24px;display:block}
+.quote-text{font-family:var(--serif);font-style:italic;font-size:1.24rem;line-height:1.5;color:var(--ink-900);margin:14px 0 18px}
+.quote-author{font-weight:800;color:var(--ink-900);font-size:.98rem}
+.quote-detail{font-size:.82rem;color:var(--ink-500);margin-top:2px}
+.masonry{columns:3;column-gap:22px}
+.masonry>*{margin-bottom:22px}
+.bio{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(32px,5vw,60px);align-items:center;margin-bottom:clamp(48px,7vw,90px)}
+.bio-img{border-radius:20px;background:var(--sage-100);overflow:hidden;aspect-ratio:4/5;box-shadow:var(--shadow-sm)}
+.bio-img img{width:100%;height:100%;object-fit:cover;object-position:top center}
+.bio.flip .bio-img{order:2}
+.pillar-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.pillar{background:#fff;border:1px solid var(--border);border-radius:20px;padding:34px 30px;transition:transform .26s var(--ease),border-color .26s var(--ease),box-shadow .26s var(--ease)}
+.pillar:hover{transform:translateY(-4px);border-color:var(--sage-300);box-shadow:var(--shadow-sm)}
+.pillar-t{font-family:var(--serif);font-size:1.7rem;font-weight:600;color:var(--ink-900);margin:16px 0 10px}
+.pill-ic{width:52px;height:52px;border-radius:14px;background:var(--sage-100);display:flex;align-items:center;justify-content:center}
+.pill-ic .i{width:26px;height:26px;color:var(--sage-700)}
+.tm-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.tm-card{text-align:center}
+.tm-ph{aspect-ratio:1/1;border-radius:20px;background:var(--sage-100);display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+.tm-ph .i{width:46px;height:46px;color:var(--sage-400)}
+.tm-name{font-family:var(--serif);font-size:1.3rem;font-weight:600;color:var(--ink-900)}
+.tm-role{font-size:.78rem;color:var(--sage-700);text-transform:uppercase;letter-spacing:.12em;font-weight:700;margin-top:2px}
+.val-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.val{background:#fff;border:1px solid var(--border);border-radius:20px;padding:28px 24px}
+.val-t{font-family:var(--serif);font-size:1.5rem;font-weight:600;color:var(--ink-900);margin:14px 0 8px}
+.appr-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.appr{background:#fff;border:1px solid var(--border);border-radius:20px;padding:32px 28px;transition:transform .26s var(--ease),border-color .26s var(--ease),box-shadow .26s var(--ease)}
+.appr:hover{transform:translateY(-4px);border-color:var(--sage-300);box-shadow:var(--shadow-sm)}
+.appr-num{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:999px;background:var(--sage-100);color:var(--sage-800);font-family:var(--serif);font-size:1.35rem;font-weight:600}
+.appr-t{font-family:var(--serif);font-size:1.45rem;font-weight:600;color:var(--ink-900);margin:16px 0 8px}
+@media(max-width:900px){.appr-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.appr-grid{grid-template-columns:1fr}}
+.info-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(32px,5vw,60px);align-items:start}
+.detail-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(32px,5vw,56px);align-items:center}
+.card-soft{background:#fff;border:1px solid var(--border);border-radius:20px;padding:24px}
+.hours-row{display:flex;justify-content:space-between;gap:16px;padding:10px 0;border-bottom:1px solid var(--border);font-size:.98rem}
+.hours-row:last-child{border-bottom:none}
+.hours-day{color:var(--ink-700);font-weight:700}
+.hours-time{color:var(--ink-500)}
+.info-line{display:flex;align-items:flex-start;gap:12px;font-size:1rem;color:var(--ink-700);line-height:1.55}
+.info-line .i{width:20px;height:20px;color:var(--sage-600);flex-shrink:0;margin-top:2px}
+.form{background:#fff;border:1px solid var(--border);border-radius:20px;padding:clamp(24px,4vw,34px);box-shadow:var(--shadow-sm);display:flex;flex-direction:column;gap:16px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.field label{display:block;font-size:.76rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-700);margin-bottom:7px}
+.field input,.field textarea{width:100%;border:1px solid var(--border-strong);border-radius:12px;padding:13px 15px;font:inherit;font-size:1rem;color:var(--ink-900);background:var(--cream-50);transition:border-color .2s var(--ease),box-shadow .2s var(--ease)}
+.field textarea{resize:vertical;min-height:110px}
+.field input:focus,.field textarea:focus{outline:none;border-color:var(--sage-500);box-shadow:0 0 0 3px var(--sage-100)}
+.sent{text-align:center;padding:34px 10px}
+.sent-ic{width:60px;height:60px;border-radius:50%;background:var(--sage-100);color:var(--sage-700);display:flex;align-items:center;justify-content:center;margin:0 auto 18px}
+.sent-ic .i{width:30px;height:30px}
+.ph{border-radius:20px;background:repeating-linear-gradient(135deg,var(--sage-50),var(--sage-50) 13px,var(--sage-100) 13px,var(--sage-100) 26px);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;min-height:360px}
+.ph span{font-family:var(--mono);font-size:.78rem;letter-spacing:.08em;color:var(--sage-700);text-transform:uppercase}
+.pts{list-style:none;padding:0;margin:24px 0 0;display:flex;flex-direction:column;gap:13px}
+.pts li{display:flex;align-items:flex-start;gap:12px;font-size:1.06rem;color:var(--ink-700)}
+.pts .i{width:20px;height:20px;color:var(--sage-600);flex-shrink:0;margin-top:3px}
+.cta-band{background:var(--sage-100);border-radius:24px;padding:clamp(40px,6vw,64px);text-align:center}
+.faq-wrap{max-width:860px;margin:0 auto}
+.faq-group{margin-bottom:clamp(40px,5vw,60px)}
+.faq-group-t{font-family:var(--serif);font-size:clamp(1.6rem,2.4vw,2.05rem);font-weight:600;color:var(--ink-900);margin:0 0 18px;padding-bottom:14px;border-bottom:1px solid var(--border)}
+.faq-item{background:#fff;border:1px solid var(--border);border-radius:16px;margin-bottom:12px;overflow:hidden;transition:border-color .24s var(--ease),box-shadow .24s var(--ease)}
+.faq-item[open]{border-color:var(--sage-300);box-shadow:var(--shadow-xs)}
+.faq-item summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:19px 24px;font-family:var(--sans);font-weight:700;font-size:1.06rem;color:var(--ink-900)}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary:hover{color:var(--sage-800)}
+.faq-chevw{display:inline-flex;flex-shrink:0;transform:rotate(0deg)}
+.faq-chev{width:22px;height:22px;color:var(--sage-600)}
+.faq-item[open] .faq-chevw{transform:rotate(180deg)}
+.faq-a{padding:0 24px 22px;color:var(--ink-700);line-height:1.72;font-size:1.02rem;max-width:70ch}
+.acc-wrap{max-width:860px;margin:0 auto}
+.acc-item{background:#fff;border:1px solid var(--border);border-radius:16px;margin-bottom:12px;overflow:hidden;transition:border-color .24s var(--ease),box-shadow .24s var(--ease)}
+.acc-item[open]{border-color:var(--sage-300);box-shadow:var(--shadow-sm)}
+.acc-item summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:20px 26px;font-family:var(--sans);font-weight:700;font-size:1.12rem;color:var(--ink-900);transition:color .2s var(--ease),background .2s var(--ease)}
+.acc-item summary::-webkit-details-marker{display:none}
+.acc-item summary:hover{color:var(--sage-800);background:var(--sage-50)}
+.acc-item[open] summary{color:var(--sage-900);border-bottom:1px solid var(--border)}
+.acc-lead{display:flex;align-items:center;gap:14px}
+.acc-badge{width:38px;height:38px;border-radius:12px;background:var(--sage-100);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.acc-badge .i{width:20px;height:20px;color:var(--sage-700)}
+.acc-chevw{display:inline-flex;flex-shrink:0;transition:transform .3s var(--ease)}
+.acc-chev{width:22px;height:22px;color:var(--sage-600)}
+.acc-item[open] .acc-chevw{transform:rotate(180deg)}
+.acc-body{padding:6px 26px 26px;animation:accReveal .4s var(--ease)}
+@keyframes accReveal{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+.acc-intro{color:var(--ink-700);line-height:1.72;font-size:1.04rem;margin:16px 0 4px;max-width:72ch}
+.acc-h{font-family:var(--serif);font-size:1.3rem;font-weight:600;color:var(--ink-900);margin:22px 0 8px}
+.acc-p{color:var(--ink-700);line-height:1.72;font-size:1.02rem;margin:0 0 4px;max-width:72ch}
+.acc-list{list-style:none;padding:0;margin:10px 0 0;display:flex;flex-direction:column;gap:9px}
+.acc-list li{display:flex;align-items:flex-start;gap:12px;color:var(--ink-700);line-height:1.6;font-size:1.02rem}
+.acc-list li::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--sage-500);flex-shrink:0;margin-top:9px}
+.acc-list.warn li::before{background:#c26a4a}
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:220px;gap:16px}
+.gallery .g-tall{grid-row:span 2}
+.gallery .g-wide{grid-column:span 2}
+.g-cell{border-radius:18px;overflow:hidden;background:var(--sage-100);box-shadow:var(--shadow-xs)}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.field.full{grid-column:1/-1}
+.field.is-check{display:flex;align-items:center}
+.field.is-check label{display:flex;align-items:center;gap:10px;margin:0;font-size:.98rem;font-weight:600;text-transform:none;letter-spacing:0;color:var(--ink-700);cursor:pointer}
+.field.is-check input{width:18px;height:18px;accent-color:var(--sage-600);cursor:pointer}
+.pform select{width:100%;border:1px solid var(--border-strong);border-radius:12px;padding:13px 15px;font:inherit;font-size:1rem;color:var(--ink-900);background:var(--cream-50)}
+.pform select:focus{outline:none;border-color:var(--sage-500);box-shadow:0 0 0 3px var(--sage-100)}
+.pform-note{font-size:.88rem;color:var(--ink-500);line-height:1.6;margin-top:4px}
+@media(max-width:560px){.fgrid{grid-template-columns:1fr}}
+@media(max-width:760px){.gallery{grid-template-columns:1fr 1fr;grid-auto-rows:180px}.gallery .g-wide{grid-column:span 2}}
+@media(max-width:520px){.gallery{grid-template-columns:1fr;grid-auto-rows:220px}.gallery .g-tall,.gallery .g-wide{grid-row:auto;grid-column:auto}}
+.ftr{background:var(--sage-900);color:var(--sage-100)}
+.ftr-in{max-width:1200px;margin:0 auto;padding:clamp(48px,7vw,84px) clamp(20px,4vw,48px);display:grid;grid-template-columns:1.5fr 1fr 1fr 1.1fr;gap:40px}
+.ftr-word{font-family:var(--serif);font-size:1.7rem;font-weight:600;color:#fff;line-height:1.05;letter-spacing:.01em;margin-top:14px}
+.ftr-sub{font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--sage-300);margin-top:6px;font-weight:700}
+.ftr-addr{color:var(--sage-200);opacity:.85;font-size:.95rem;line-height:1.6;margin-top:18px}
+.ftr h4{font-family:var(--sans);font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--sage-300);margin-bottom:14px;font-weight:800}
+.ftr-link{display:block;background:none;border:none;color:var(--sage-100);opacity:.86;padding:6px 0;font-size:.97rem;text-align:left;text-decoration:none;transition:opacity .2s var(--ease),color .2s var(--ease)}
+.ftr-link:hover{opacity:1;color:#fff}
+.ftr .btn{color:var(--sage-900)}
+.ftr-base{border-top:1px solid rgba(255,255,255,.12)}
+.ftr-base-in{max-width:1200px;margin:0 auto;padding:18px clamp(20px,4vw,48px);text-align:center;font-size:.83rem;color:var(--sage-300)}
+@media(max-width:1024px){.svc-grid{grid-template-columns:repeat(2,1fr)}.tm-grid{grid-template-columns:repeat(3,1fr)}.val-grid{grid-template-columns:repeat(2,1fr)}.masonry{columns:2}.pillar-grid{grid-template-columns:1fr}.pillar{display:flex;align-items:flex-start;gap:22px}.pillar .pill-ic{flex-shrink:0}.pillar-t{margin-top:0}}
+@media(max-width:900px){.nav{position:absolute;top:100%;right:0;left:0;flex-direction:column;align-items:stretch;background:var(--cream-50);border-bottom:1px solid var(--border);padding:14px clamp(20px,4vw,48px) 22px;gap:4px;box-shadow:var(--shadow-md);display:none}.nav.open{display:flex}.navlink{padding:13px 15px;font-size:1.05rem}.nav-phone{margin:8px 0 0;padding:10px 0}.nav-cta{margin:6px 0 0;justify-content:center}.burger{display:flex}.burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}.burger.open span:nth-child(2){opacity:0}.burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}}
+@media(max-width:760px){.hero-veil{background:linear-gradient(180deg,rgba(84,97,60,.2) 0%,rgba(89,104,64,.72) 46%,rgba(63,72,45,.92) 100%)}.hero-img{object-position:center 20%}.hero-in{align-items:flex-end;min-height:70vh}.doc-grid{grid-template-columns:1fr 1fr}.info-grid,.detail-grid,.bio{grid-template-columns:1fr}.bio.flip .bio-img{order:0}.bio-img{max-width:420px}.tan-grid{grid-template-columns:1fr}.ftr-in{grid-template-columns:1fr 1fr;gap:32px}}
+@media(max-width:520px){.svc-grid{grid-template-columns:1fr}.tm-grid{grid-template-columns:repeat(2,1fr)}.val-grid{grid-template-columns:1fr}.masonry{columns:1}.form-row{grid-template-columns:1fr}.doc-grid{grid-template-columns:1fr;max-width:380px;margin:0 auto}.ftr-in{grid-template-columns:1fr}.brand-word{display:none}}
+@media(prefers-reduced-motion:reduce){.hdr,.hdr-in,.brand-mark,.brand-word,.btn,.btn .i{transition:none}.route-veil{display:none}}
+@media(min-width:901px) and (max-width:1200px){.brand-mark{height:46px}.brand-word{height:46px}.hdr.shrunk .brand-word{height:42px}.navlink{padding:9px 11px}.nav-cta{padding:11px 18px}}
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" crossorigin="anonymous"></script>
+<script src="./image-slot.js"></script>
+</helmet>
+<div class="jfd">
+<div class="route-veil"><img src="assets/logo-mark-white.png" alt=""></div>
+<sc-if value="{{ announcement }}"><div class="promo">{{ announcement }}</div></sc-if>
+<header class="hdr">
+<div class="hdr-in">
+<button class="brand" onClick="{{ go.home }}" aria-label="Jamestown Family &amp; Cosmetic Dentistry — home"><img class="brand-mark" src="assets/logo-mark.png" alt=""><img class="brand-word" src="assets/logo-wordmark.png" alt="Jamestown Dentistry"></button>
+<nav class="nav {{ menuClass }}">
+<button class="navlink {{ na.expertise }}" onClick="{{ go.expertise }}">Expertise</button>
+<button class="navlink {{ na.services }}" onClick="{{ go.services }}">Services</button>
+<button class="navlink {{ na.team }}" onClick="{{ go.team }}">Our Team</button>
+<button class="navlink {{ na.newpatient }}" onClick="{{ go.newpatient }}">New Patient</button>
+<a class="nav-phone" href="tel:3364543116">{{ phone }}</a>
+<button class="btn btn-primary nav-cta" onClick="{{ go.newpatient }}">Schedule</button>
+</nav>
+<button class="burger {{ menuClass }}" onClick="{{ toggleMenu }}" aria-label="Menu"><span></span><span></span><span></span></button>
+</div>
+</header>
+<main>
+<sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+<section class="hero"><img class="hero-img" src="assets/hero-woman.jpg" alt="Smiling patient against a sage-green wall"><div class="hero-veil"></div><canvas class="hero-particles"></canvas>
+<div class="hero-in"><div class="hero-copy">
+<p class="eyebrow" style="color:rgba(255,255,255,.9)">Family &amp; Cosmetic Dentistry</p>
+<h1 class="disp disp-xl" style="color:#fff;margin-top:16px">Your smile,<br><span class="serif-i" style="color:var(--sage-100)">Our promise.</span></h1>
+<p style="font-size:1.375rem;line-height:1.5;color:rgba(255,255,255,.95);margin:22px 0 32px;max-width:32ch">Personalized dental care for the entire family.</p>
+<button class="btn btn-white" onClick="{{ go.newpatient }}"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"></rect><path d="M16 2v4M8 2v4M3 10h18"></path></svg>Schedule an appointment</button>
+</div></div></section>
+<section class="sec wrap">
+<div class="center" style="max-width:640px;margin:0 auto clamp(40px,5vw,56px)"><p class="eyebrow">What we do</p><h2 class="disp disp-lg" style="margin-top:14px">Care for every stage of your smile.</h2></div>
+<div class="svc-grid">
+<button class="svc-card" onClick="{{ go.cleanings }}"><span class="svc-label">Cleanings</span><span class="svc-desc">A partnership to protect your natural teeth and prevent dental disease.</span><span class="svc-more">Learn more<svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg></span></button>
+<button class="svc-card" onClick="{{ go.cosmetic }}"><span class="svc-label">Cosmetic</span><span class="svc-desc">Comfortable, efficient, and affordable ways to enhance your smile.</span><span class="svc-more">Learn more<svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg></span></button>
+<button class="svc-card" onClick="{{ go.implants }}"><span class="svc-label">Implants</span><span class="svc-desc">A durable, natural-looking solution for replacing missing teeth.</span><span class="svc-more">Learn more<svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg></span></button>
+<button class="svc-card" onClick="{{ go.invisalign }}"><span class="svc-label">Invisalign</span><span class="svc-desc">A discreet, convenient clear-aligner alternative to braces.</span><span class="svc-more">Learn more<svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg></span></button>
+</div>
+</section>
+<section style="background:var(--sage-100)"><div class="sec wrap">
+<div style="max-width:620px;margin-bottom:clamp(32px,4vw,44px)"><p class="eyebrow">Get to know us</p><h2 class="disp disp-lg" style="margin-top:14px">We treat every patient like family.</h2></div>
+<div class="tan-grid" style="margin-bottom:clamp(40px,5vw,52px)">
+<button class="tan-card" onClick="{{ go.team }}"><span class="tan-title">Our Team.</span><span class="tan-arrow"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg></span></button>
+<button class="tan-card" onClick="{{ go.patients }}"><span class="tan-title">Our Patients.</span><span class="tan-arrow"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg></span></button>
+<button class="tan-card" onClick="{{ go.approach }}"><span class="tan-title">Our Approach.</span><span class="tan-arrow"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg></span></button>
+</div>
+<div class="info-grid" style="align-items:center">
+<div><p class="lead" style="margin-bottom:26px">We are dedicated to providing exceptional dental care in an environment built on trust, compassion, and respect. Serving Jamestown and the greater Triad, our team treats every patient like family — offering high-quality care while honoring your goals, values, and choices every step of the way.</p><button class="btn btn-secondary" onClick="{{ go.team }}">Meet the doctors<svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg></button></div>
+<div class="doc-grid">
+<button class="doc-card" onClick="{{ go.team }}"><div class="doc-photo"><img src="assets/dr-puckett.png" alt="Dr. Michael Puckett" style="transform: scale(0.8); width: 278px; height: 292px"></div><div class="doc-body"><div class="doc-name">Dr. Puckett</div><div class="doc-role">Dentist · DDS</div></div></button>
+<button class="doc-card" onClick="{{ go.team }}"><div class="doc-photo"><img src="assets/dr-chadwick.png" alt="Dr. Sidney Chadwick"></div><div class="doc-body"><div class="doc-name">Dr. Chadwick</div><div class="doc-role">Dentist · DDS</div></div></button>
+</div>
+</div>
+</div></section>
+<section style="background:var(--cream-100);border-top:1px solid var(--border)"><div class="sec wrap">
+<div style="max-width:640px;margin:0 auto clamp(40px,5vw,56px);text-align:center"><p class="eyebrow">Our approach</p><h2 class="disp disp-lg" style="margin-top:14px">How we care for you.</h2></div>
+<div class="appr-grid">
+<sc-for list="{{ approachSteps }}" as="s" hint-placeholder-count="6"><div class="appr"><span class="appr-num">{{ s.n }}</span><h3 class="appr-t">{{ s.t }}</h3><p style="line-height:1.7">{{ s.d }}</p></div></sc-for>
+</div>
+</div></section>
+<section class="sec wrap narrow mxauto center">
+<p class="eyebrow">Reviews</p><h2 class="disp disp-lg" style="margin:14px 0 36px">Why our patients are like family.</h2>
+<div class="quote sage" style="text-align:left"><span class="quote-mark">“</span><p class="quote-text">Dr. Puckett has made visiting the dentist a much less dreaded experience, and I deeply appreciate his professional expertise and the genuine interest he takes in my family.</p><div class="quote-author">Joe Hagler</div><div class="quote-detail">Patient since 2011</div></div>
+<div style="margin-top:30px"><button class="btn btn-secondary" onClick="{{ go.patients }}">Read more patient stories<svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg></button></div>
+</section>
+<section style="background:var(--cream-100);border-top:1px solid var(--border)"><div class="sec wrap"><div class="info-grid">
+<div><p class="eyebrow">New patients welcome</p><h2 class="disp disp-lg" style="margin:14px 0 18px">Let's get started today.</h2><p class="lead" style="margin-bottom:26px">If you have any questions or need assistance, reach us by phone, email, or the form. We're always available in case of emergencies.</p>
+<div class="card-soft" style="margin-bottom:20px"><h4 style="font-family:var(--serif);font-size:1.3rem;color:var(--ink-900);margin-bottom:6px">Office hours</h4>
+<div class="hours-row"><span class="hours-day">Monday</span><span class="hours-time">8:30am – 5:00pm</span></div>
+<div class="hours-row"><span class="hours-day">Tuesday</span><span class="hours-time">8:30am – 5:00pm</span></div>
+<div class="hours-row"><span class="hours-day">Wednesday</span><span class="hours-time">8:30am – 5:00pm</span></div>
+<div class="hours-row"><span class="hours-day">Thursday</span><span class="hours-time">8:30am – 3:00pm</span></div>
+<div class="hours-row"><span class="hours-day">Friday</span><span class="hours-time">Closed</span></div>
+</div>
+<div class="info-line"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.81.36 1.6.68 2.34a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.74-1.74a2 2 0 0 1 2.11-.45c.74.32 1.53.55 2.34.68A2 2 0 0 1 22 16.92z"></path></svg><span style="font-weight:800;color:var(--ink-900);font-size:1.05rem">{{ phone }}</span></div>
+</div>
+<form class="form" onSubmit="{{ submit }}">
+<sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}"><div class="sent"><div class="sent-ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></div><h3 class="disp disp-sm">Thank you!</h3><p class="muted" style="margin-top:8px">We'll be in touch within one business day.</p><div style="margin-top:22px"><button type="button" class="btn btn-secondary" onClick="{{ resetForm }}">Send another</button></div></div></sc-if>
+<sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
+<div class="form-row"><div class="field"><label>Name</label><input placeholder="Jane Doe"></div><div class="field"><label>Phone</label><input placeholder="(336) 000-0000"></div></div>
+<div class="field"><label>Email</label><input type="email" placeholder="you@email.com"></div>
+<div class="field"><label>Note</label><textarea placeholder="How can we help you smile?"></textarea></div>
+<button class="btn btn-primary" type="submit" style="justify-content:center">Request an appointment<svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg></button>
+</sc-if>
+</form>
+</div></div></section>
+</sc-if>
+
+<sc-if value="{{ isExpertise }}">
+<section class="subhero"><div class="subhero-in"><p class="eyebrow">Expertise</p><h1 class="disp disp-lg" style="margin:16px 0 20px">Comprehensive care, thoughtfully delivered.</h1><p class="lead">For more than three decades, Jamestown Family &amp; Cosmetic Dentistry has cared for families across Jamestown and the greater Triad. Our expertise spans preventive, cosmetic, and orthodontic care — always with the calm, unhurried attention you deserve.</p></div></section>
+<section class="sec wrap"><div class="pillar-grid">
+<div class="pillar"><div class="pill-ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2s5 2 5 8c0 3-1 5-1 8 0 2-1 3-2 3s-1-2-2-4-1-1-2 0-1 4-2 4-2-1-2-3c0-3-1-5-1-8 0-6 5-8 5-8z"></path></svg></div><h3 class="pillar-t">General &amp; preventive</h3><p style="line-height:1.7">Thorough cleanings, digital exams, and honest guidance that keep your smile healthy for life.</p></div>
+<div class="pillar"><div class="pill-ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 4.6L18.5 9l-3.6 3 1.1 4.8L12 14.8 8 16.8l1.1-4.8L5.5 9l4.6-1.4z"></path></svg></div><h3 class="pillar-t">Cosmetic</h3><p style="line-height:1.7">Whitening, veneers, and complete smile makeovers designed around your goals — never oversold.</p></div>
+<div class="pillar"><div class="pill-ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h10"></path></svg></div><h3 class="pillar-t">Orthodontic</h3><p style="line-height:1.7">Clear Invisalign aligners that straighten your smile in less time, with fewer visits to the office.</p></div>
+</div>
+<div class="cta-band" style="margin-top:clamp(48px,6vw,72px);text-align:left;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px">
+<div><p class="eyebrow">Led by experienced hands</p><h3 class="disp disp-md" style="margin-top: 12px; max-width: 22ch; width: 500px; height: 138px; position: static; font-size: clamp(1.6rem, 2.56vw, 2.16rem)">Dr. Puckett &amp; Dr. Chadwick — Highly Trained &amp; Thoughtfully Caring</h3></div>
+<button class="btn btn-primary" onClick="{{ go.team }}">Meet the doctors<svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg></button>
+</div>
+<div style="text-align:center;margin-top:clamp(40px,5vw,56px)"><button class="btn btn-secondary" onClick="{{ go.services }}">Explore our services<svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg></button></div>
+</section>
+</sc-if>
+
+<sc-if value="{{ isServices }}">
+<section class="subhero"><div class="subhero-in"><p class="eyebrow">Services</p><h1 class="disp disp-lg" style="margin:16px 0 20px">Care for every stage of your smile.</h1><p class="lead">From routine cleanings to complete smile transformations, we offer comprehensive care for every stage of your smile — all under one roof, from a team that treats you like family.</p></div></section>
+<section class="sec wrap"><div class="svc-grid">
+<sc-for list="{{ serviceCards }}" as="c" hint-placeholder-count="7"><button class="svc-card" onClick="{{ c.go }}"><span class="svc-label">{{ c.label }}</span><span class="svc-desc">{{ c.desc }}</span><span class="svc-more">Learn more<svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg></span></button></sc-for>
+</div>
+<div class="cta-band" style="margin-top:clamp(48px,6vw,72px)"><p class="eyebrow">Not sure where to start?</p><h3 class="disp disp-md" style="margin:12px 0 22px">We'll help you find the right care.</h3><button class="btn btn-primary" onClick="{{ go.newpatient }}">Schedule an appointment<svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg></button></div>
+</section>
+</sc-if>
+
+<sc-if value="{{ isService }}">
+<section class="subhero"><div class="subhero-in"><p class="eyebrow">{{ svc.label }}</p><h1 class="disp disp-lg" style="margin:16px 0 20px">{{ svc.title }}</h1><p class="lead">{{ svc.blurb }}</p></div></section>
+<section class="sec wrap"><div class="detail-grid">
+<div><p style="font-size:1.15rem;line-height:1.8;color:var(--ink-700)">{{ svc.body }}</p>
+<ul class="pts"><sc-for list="{{ svc.points }}" as="pt" hint-placeholder-count="4"><li><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>{{ pt }}</li></sc-for></ul>
+<div style="margin-top:32px;display:flex;gap:14px;flex-wrap:wrap"><button class="btn btn-primary" onClick="{{ go.newpatient }}">Schedule an appointment<svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg></button><button class="btn btn-secondary" onClick="{{ go.services }}">All services</button></div>
+</div>
+<div class="ph"><span>{{ svc.imgLabel }}</span></div>
+</div>
+<sc-if value="{{ svc.solutions }}">
+<div style="max-width:760px;margin:clamp(48px,7vw,80px) auto 0"><p class="eyebrow" style="text-align:center">How we treat it</p><h2 class="disp disp-md" style="margin:12px 0 clamp(28px,4vw,40px);text-align:center;text-wrap:pretty">Two conservative solutions.</h2>
+<div class="pillar-grid" style="grid-template-columns:1fr 1fr">
+<sc-for list="{{ svc.solutions }}" as="sol" hint-placeholder-count="2"><div class="pillar"><h3 class="pillar-t" style="margin-top:0">{{ sol.name }}</h3><p style="line-height:1.75">{{ sol.desc }}</p></div></sc-for>
+</div>
+</div>
+</sc-if>
+</section>
+</sc-if>
+
+<sc-if value="{{ isTeam }}">
+<section class="subhero"><div class="subhero-in"><p class="eyebrow">Our Team</p><h1 class="disp disp-lg" style="margin:16px 0 20px">The people behind your smile.</h1><p class="lead">Jamestown Family &amp; Cosmetic Dentistry provides comprehensive dental services with a commitment to personalized, high-quality care. We focus on building lasting relationships while helping you achieve your perfect smile through expert general, cosmetic, and orthodontic treatment.</p></div></section>
+<section class="sec wrap" style="padding-bottom:0">
+<div class="bio"><div class="bio-img"><img src="assets/dr-puckett.png" alt="Dr. Michael Puckett" style="width: 100%; height: 100%"></div><div><p class="eyebrow">DDS · University of North Carolina, 1993</p><h2 class="disp disp-md" style="margin:12px 0 18px">Dr. Michael Puckett</h2><p style="font-size:1.1rem;line-height:1.8">Dr. James M. Puckett is a dedicated and highly experienced dentist serving the Jamestown community from his practice on West Main Street. Since earning his degree from the University of North Carolina in 1993, he has been committed to comprehensive, patient-focused care with an emphasis on prevention and long-term oral health. Known for his compassionate approach, Dr. Puckett and his team prioritize comfort and individualized treatment to ensure every visit is a positive, trusted experience.</p></div></div>
+<div class="bio flip"><div class="bio-img"><img src="assets/dr-chadwick.png" alt="Dr. Sidney Chadwick"></div><div><p class="eyebrow">DDS · East Carolina University</p><h2 class="disp disp-md" style="margin:12px 0 18px">Dr. Sidney Chadwick</h2><p style="font-size:1.1rem;line-height:1.8">“I'm Dr. Sidney Chadwick, and I am thrilled to welcome you to our practice. After earning my degree from East Carolina University and completing a residency at the VA Medical Center, I developed a deep passion for detail-oriented, patient-centered care. I love building lasting relationships with patients of all ages, and I am committed to treating your family with the same care and attention I give my own.”</p></div></div>
+</section>
+<section class="sec wrap">
+<div style="margin-bottom:clamp(32px,4vw,44px)"><p class="eyebrow">The full team</p><h2 class="disp disp-md" style="margin-top:12px">Familiar faces at every visit.</h2></div>
+<div class="tm-grid"><sc-for list="{{ staff }}" as="m" hint-placeholder-count="8"><div class="tm-card"><div class="tm-ph"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c0-4 3.6-6 8-6s8 2 8 6"></path></svg></div><div class="tm-name">{{ m.name }}</div><div class="tm-role">{{ m.role }}</div></div></sc-for></div>
+</section>
+<section style="background:var(--sage-100)"><div class="sec wrap">
+<div style="max-width:640px;margin-bottom:clamp(32px,4vw,44px)"><p class="eyebrow">Our office</p><h2 class="disp disp-md" style="margin-top:12px;text-wrap:pretty">A calm, welcoming space to smile.</h2><p class="lead" style="margin-top:14px">Take a look inside our Jamestown practice. From the reception area to our treatment rooms, every corner is designed to help you feel at home. Drag your own photos onto any tile below to build the gallery.</p></div>
+<div class="gallery">
+<div class="g-cell g-tall"><image-slot id="office-1" shape="rect" placeholder="Reception / waiting area"></image-slot></div>
+<div class="g-cell"><image-slot id="office-2" shape="rect" placeholder="Front desk"></image-slot></div>
+<div class="g-cell"><image-slot id="office-3" shape="rect" placeholder="Treatment room"></image-slot></div>
+<div class="g-cell g-wide"><image-slot id="office-4" shape="rect" placeholder="Operatory / chair view"></image-slot></div>
+<div class="g-cell"><image-slot id="office-5" shape="rect" placeholder="Hallway / detail"></image-slot></div>
+<div class="g-cell"><image-slot id="office-6" shape="rect" placeholder="Exterior / signage"></image-slot></div>
+<div class="g-cell g-wide"><image-slot id="office-7" shape="rect" placeholder="Team candid"></image-slot></div>
+</div>
+</div></section>
+</sc-if>
+
+<sc-if value="{{ isPatients }}">
+<section class="subhero"><div class="subhero-in"><p class="eyebrow">Patient Testimonials</p><h1 class="disp disp-lg" style="margin:16px 0 20px">Our patients.</h1><p class="lead">At Jamestown Dentistry, the patient relationship is built on a foundation of absolute transparency — open communication and honest guidance that transform routine visits into lasting partnerships.</p></div></section>
+<section class="sec wrap"><div class="masonry"><sc-for list="{{ reviews }}" as="rv" hint-placeholder-count="6"><div class="quote {{ rv.cls }}"><span class="quote-mark">“</span><p class="quote-text">{{ rv.quote }}</p><div class="quote-author">{{ rv.author }}</div></div></sc-for></div></section>
+</sc-if>
+
+<sc-if value="{{ isApproach }}">
+<section class="subhero"><div class="subhero-in"><p class="eyebrow">Our Approach</p><h1 class="disp disp-lg" style="margin:16px 0 20px">Built on trust, compassion, and respect.</h1><p class="lead">At Jamestown Dentistry, the patient relationship is built upon a foundation of absolute transparency — ensuring every individual feels fully informed and empowered about their oral health.</p></div></section>
+<section class="sec wrap"><div class="val-grid">
+<div class="val"><h3 class="val-t">Trust</h3><p style="line-height:1.7">Honest guidance and treatment advice you can rely on, visit after visit.</p></div>
+<div class="val"><h3 class="val-t">Compassion</h3><p style="line-height:1.7">Gentle, patient care that puts your comfort first at every appointment.</p></div>
+<div class="val"><h3 class="val-t">Respect</h3><p style="line-height:1.7">We honor your goals, values, and choices at every step of your care.</p></div>
+<div class="val"><h3 class="val-t">Transparency</h3><p style="line-height:1.7">Clear communication so you always feel fully informed and in control.</p></div>
+</div>
+<div style="max-width:640px;margin:clamp(60px,8vw,96px) auto clamp(36px,4vw,48px);text-align:center"><p class="eyebrow">Our approach</p><h2 class="disp disp-md" style="margin-top:12px">How we care for you.</h2></div>
+<div class="appr-grid">
+<sc-for list="{{ approachSteps }}" as="s" hint-placeholder-count="6"><div class="appr"><span class="appr-num">{{ s.n }}</span><h3 class="appr-t">{{ s.t }}</h3><p style="line-height:1.7">{{ s.d }}</p></div></sc-for>
+</div>
+<div class="narrow mxauto center" style="margin-top:clamp(48px,6vw,72px)"><p style="font-size:1.2rem;line-height:1.85;color:var(--ink-700)">By prioritizing open communication and honest guidance, our team cultivates a deep sense of trust that transforms routine visits into lasting professional partnerships. This unwavering commitment to clinical integrity and compassionate care allows patients to feel truly secure and valued throughout every stage of their treatment journey.</p><div style="margin-top:32px"><button class="btn btn-primary" onClick="{{ go.newpatient }}">Become a patient<svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg></button></div></div>
+</section>
+</sc-if>
+
+<sc-if value="{{ isNewpatient }}">
+<section class="subhero"><div class="subhero-in"><p class="eyebrow">New Patient</p><h1 class="disp disp-lg" style="margin:16px 0 20px">Let's get started today.</h1><p class="lead">We are dedicated to providing the best dental care for you and your family. If you have any questions or need assistance, reach us by phone, email, or the form below.</p></div></section>
+<section class="sec wrap"><div class="info-grid">
+<div style="display:flex;flex-direction:column;gap:22px">
+<div class="card-soft" style="background:var(--sage-100);border-color:var(--sage-200)"><p class="eyebrow">Emergency</p><p style="margin-top:10px;line-height:1.65">We are always available in case of emergencies. Please call <strong style="color:var(--ink-900)">{{ phone }}</strong>.</p></div>
+<div class="card-soft"><h4 style="font-family:var(--serif);font-size:1.3rem;color:var(--ink-900);margin-bottom:6px">Office hours</h4>
+<div class="hours-row"><span class="hours-day">Monday</span><span class="hours-time">8:30am – 5:00pm</span></div>
+<div class="hours-row"><span class="hours-day">Tuesday</span><span class="hours-time">8:30am – 5:00pm</span></div>
+<div class="hours-row"><span class="hours-day">Wednesday</span><span class="hours-time">8:30am – 5:00pm</span></div>
+<div class="hours-row"><span class="hours-day">Thursday</span><span class="hours-time">8:30am – 3:00pm</span></div>
+<div class="hours-row"><span class="hours-day">Friday</span><span class="hours-time">Closed</span></div>
+</div>
+<div class="info-line"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg><span>800 West Main Street, Suite B<br>Jamestown, NC 27282</span></div>
+<div class="info-line"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.81.36 1.6.68 2.34a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.74-1.74a2 2 0 0 1 2.11-.45c.74.32 1.53.55 2.34.68A2 2 0 0 1 22 16.92z"></path></svg><span style="font-weight:800;color:var(--ink-900);font-size:1.05rem">{{ phone }}</span></div>
+</div>
+<form class="form" onSubmit="{{ submit }}">
+<sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}"><div class="sent"><div class="sent-ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></div><h3 class="disp disp-sm">Thank you!</h3><p class="muted" style="margin-top:8px">We'll be in touch within one business day.</p><div style="margin-top:22px"><button type="button" class="btn btn-secondary" onClick="{{ resetForm }}">Send another</button></div></div></sc-if>
+<sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
+<div class="form-row"><div class="field"><label>Name</label><input placeholder="Jane Doe"></div><div class="field"><label>Phone</label><input placeholder="(336) 000-0000"></div></div>
+<div class="field"><label>Email</label><input type="email" placeholder="you@email.com"></div>
+<div class="field"><label>Preferred day</label><input placeholder="Tuesday morning"></div>
+<div class="field"><label>Note</label><textarea placeholder="Tell us how we can help."></textarea></div>
+<button class="btn btn-primary" type="submit" style="justify-content:center">Request an appointment<svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg></button>
+</sc-if>
+</form>
+</div></section>
+<section class="sec wrap">
+<div style="max-width:660px;margin:0 auto clamp(32px,4vw,44px);text-align:center"><p class="eyebrow">Post-operative instructions</p><h2 class="disp disp-md" style="margin-top:12px;text-wrap:pretty">Caring for your smile after treatment.</h2><p class="lead" style="margin-top:14px">After your dental procedure, it's crucial to follow our post-operative instructions for a smooth, comfortable recovery. Select your procedure below for detailed guidance.</p></div>
+<div class="acc-wrap">
+<sc-for list="{{ postOp }}" as="po" hint-placeholder-count="6">
+<details class="acc-item">
+<summary><span class="acc-lead"><span class="acc-badge"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5.5c-2-2-5-2-6.5 0C3.5 8 5 13 7 18c.6 1.5 1.4 2 2 2s1-1 1.5-2.5S11.4 15 12 15s1 1 1.5 2.5S14.4 20 15 20s1.4-.5 2-2c2-5 3.5-10 1.5-12.5-1.5-2-4.5-2-6.5 0Z"></path></svg></span>{{ po.label }}</span><span class="acc-chevw"><svg class="acc-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></span></summary>
+<div class="acc-body">
+<sc-if value="{{ po.intro }}"><p class="acc-intro">{{ po.intro }}</p></sc-if>
+<sc-for list="{{ po.blocks }}" as="b" hint-placeholder-count="3">
+<sc-if value="{{ b.h }}"><h4 class="acc-h">{{ b.h }}</h4></sc-if>
+<sc-if value="{{ b.p }}"><p class="acc-p">{{ b.p }}</p></sc-if>
+<sc-if value="{{ b.list }}"><ul class="acc-list {{ b.cls }}"><sc-for list="{{ b.list }}" as="it" hint-placeholder-count="3"><li>{{ it }}</li></sc-for></ul></sc-if>
+</sc-for>
+</div>
+</details>
+</sc-for>
+</div>
+</section>
+<section style="background:var(--cream-100);border-top:1px solid var(--border)"><div class="sec wrap">
+<div style="max-width:660px;margin:0 auto clamp(32px,4vw,44px);text-align:center"><p class="eyebrow">New patient forms</p><h2 class="disp disp-md" style="margin-top:12px;text-wrap:pretty">Save time before your first visit.</h2><p class="lead" style="margin-top:14px">We kindly ask that you arrive 15 minutes before your scheduled appointment to complete new patient paperwork. For your convenience, you're also welcome to review and complete the forms at home prior to your visit. This information helps us tailor your care safely and comfortably to your needs.</p></div>
+<div class="acc-wrap">
+<sc-for list="{{ patientForms }}" as="po" hint-placeholder-count="2">
+<details class="acc-item">
+<summary><span class="acc-lead"><span class="acc-badge"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"></path><path d="M14 3v5h5M9 13h6M9 17h6"></path></svg></span>{{ po.label }}</span><span class="acc-chevw"><svg class="acc-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></span></summary>
+<div class="acc-body">
+<form class="pform" onSubmit="{{ submitPaperwork }}">
+<input type="hidden" name="__subject" value="{{ po.subject }}">
+<sc-if value="{{ po.intro }}"><p class="acc-intro">{{ po.intro }}</p></sc-if>
+<sc-for list="{{ po.groups }}" as="grp" hint-placeholder-count="3">
+<h4 class="acc-h">{{ grp.h }}</h4>
+<sc-if value="{{ grp.note }}"><p class="acc-p" style="margin-bottom:10px">{{ grp.note }}</p></sc-if>
+<div class="fgrid">
+<sc-for list="{{ grp.fields }}" as="f" hint-placeholder-count="4">
+<div class="field {{ f.wcls }}">
+<sc-if value="{{ f.showLabel }}"><label>{{ f.label }}</label></sc-if>
+<sc-if value="{{ f.isInput }}"><input type="{{ f.inputType }}" data-fld="1" data-lbl="{{ f.label }}" placeholder="{{ f.ph }}"></sc-if>
+<sc-if value="{{ f.isArea }}"><textarea data-fld="1" data-lbl="{{ f.label }}" placeholder="{{ f.ph }}"></textarea></sc-if>
+<sc-if value="{{ f.isSelect }}"><select data-fld="1" data-lbl="{{ f.label }}"><sc-for list="{{ f.options }}" as="op" hint-placeholder-count="3"><option>{{ op }}</option></sc-for></select></sc-if>
+<sc-if value="{{ f.isCheck }}"><label><input type="checkbox" data-fld="1" data-lbl="{{ f.label }}">{{ f.label }}</label></sc-if>
+</div>
+</sc-for>
+</div>
+</sc-for>
+<button class="btn btn-primary" type="submit" style="justify-content:center;margin-top:8px">Submit to office<svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"></path><path d="M22 2 15 22l-4-9-9-4 20-7z"></path></svg></button>
+<p class="pform-note">Submitting opens your email app with the details addressed to info@jamestownfamilydentistry.com. Please avoid sending Social Security or insurance ID numbers by email &mdash; bring those to your visit.</p>
+</form>
+</div>
+</details>
+</sc-for>
+</div>
+</div></section>
+<section class="sec wrap"><div style="max-width:640px;margin:0 auto clamp(32px,4vw,44px);text-align:center"><p class="eyebrow">Patient information</p><h2 class="disp disp-md" style="margin-top:12px;text-wrap:pretty">Everything you need to feel prepared.</h2><p class="lead" style="margin-top:14px">Explore our range of dental services designed to keep your smile healthy and beautiful. From routine check-ups to cosmetic procedures, we are here to cater to all your dental needs.</p></div>
+<div class="doc-grid" style="grid-template-columns:1fr 1fr">
+<button class="doc-card" onClick="{{ go.faq }}" style="text-align:left"><div class="doc-body" style="padding:28px 30px"><div class="doc-name">FAQs</div><p style="margin-top:10px;line-height:1.7;color:var(--ink-700)">Have questions about our services or dental care in general? Check out our FAQs section for answers to common queries. We aim to provide you with all the information you need to make informed decisions about your oral health.</p><span class="svc-more" style="color:var(--sage-800);margin-top:16px">View FAQs<svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg></span></div></button>
+<button class="doc-card" onClick="{{ go.patients }}" style="text-align:left"><div class="doc-body" style="padding:28px 30px"><div class="doc-name">Testimonials</div><p style="margin-top:10px;line-height:1.7;color:var(--ink-700)">Discover what our patients have to say about their experiences at Jamestown Family &amp; Cosmetic Dentistry. Read testimonials that highlight our commitment to exceptional care and patient satisfaction.</p><span class="svc-more" style="color:var(--sage-800);margin-top:16px">Read testimonials<svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg></span></div></button>
+</div>
+</section>
+<section style="background:var(--sage-100)"><div class="sec wrap"><div class="faq-wrap">
+<div class="center" style="margin-bottom:clamp(32px,4vw,44px)"><p class="eyebrow">Good to know</p><h2 class="disp disp-md" style="margin-top:12px">Frequently asked questions.</h2></div>
+<sc-for list="{{ faqPreview }}" as="qa" hint-placeholder-count="4">
+<details class="faq-item"><summary>{{ qa.q }}<span class="faq-chevw"><svg class="faq-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></span></summary><div class="faq-a">{{ qa.a }}</div></details>
+</sc-for>
+<div class="center" style="margin-top:clamp(24px,3vw,34px)"><button class="btn btn-secondary" onClick="{{ go.faq }}">See all questions<svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg></button></div>
+</div></div></section>
+</sc-if>
+
+<sc-if value="{{ isFaq }}">
+<section class="subhero"><div class="subhero-in"><p class="eyebrow">FAQ</p><h1 class="disp disp-lg" style="margin:16px 0 20px">Frequently asked questions.</h1><p class="lead">Answers to the questions we hear most — from routine care and gum health to cosmetic options, restorations, and emergencies. Still have a question? We're always happy to help.</p></div></section>
+<section class="sec wrap"><div class="faq-wrap">
+<sc-for list="{{ faqGroups }}" as="grp" hint-placeholder-count="5">
+<div class="faq-group">
+<h2 class="faq-group-t">{{ grp.title }}</h2>
+<sc-for list="{{ grp.items }}" as="qa" hint-placeholder-count="3">
+<details class="faq-item"><summary>{{ qa.q }}<span class="faq-chevw"><svg class="faq-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></span></summary><div class="faq-a">{{ qa.a }}</div></details>
+</sc-for>
+</div>
+</sc-for>
+<div class="cta-band" style="margin-top:clamp(24px,4vw,40px)"><p class="eyebrow">Still have questions?</p><h3 class="disp disp-md" style="margin:12px 0 22px">We're here to help.</h3><button class="btn btn-primary" onClick="{{ go.newpatient }}">Contact us<svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg></button></div>
+</div></section>
+</sc-if>
+</main>
+<footer class="ftr">
+<div class="ftr-in">
+<div><img src="assets/logo-mark-white.png" alt="" style="height:52px;width:auto"><div class="ftr-word">Jamestown Dentistry</div><div class="ftr-sub">Family &amp; Cosmetic</div><p class="ftr-addr">800 West Main Street, Suite B<br>Jamestown, NC 27282<br><br>{{ phone }}</p></div>
+<div><h4>Explore</h4><button class="ftr-link" onClick="{{ go.expertise }}">Expertise</button><button class="ftr-link" onClick="{{ go.services }}">Services</button><button class="ftr-link" onClick="{{ go.team }}">Our Team</button><button class="ftr-link" onClick="{{ go.newpatient }}">New Patient</button></div>
+<div><h4>More</h4><button class="ftr-link" onClick="{{ go.approach }}">Our Approach</button><button class="ftr-link" onClick="{{ go.patients }}">Our Patients</button><button class="ftr-link" onClick="{{ go.faq }}">FAQ</button><button class="ftr-link" onClick="{{ go.newpatient }}">Emergency Contact</button></div>
+<div><h4>Office hours</h4><p class="ftr-addr" style="margin-top:0">Mon – Wed · 8:30–5:00<br>Thursday · 8:30–3:00<br>Friday · Closed</p><button class="btn btn-white" style="margin-top:18px;padding:11px 22px" onClick="{{ go.newpatient }}">Schedule</button></div>
+</div>
+<div class="ftr-base"><div class="ftr-base-in">© 2026 Jamestown Family &amp; Cosmetic Dentistry · Jamestown, NC · Your smile, our promise.</div></div>
+</footer>
+</div>
+</x-dc>
+<template id="__bundler_thumbnail" data-bg-color="#8fae7b">
+<svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg"><rect width="1200" height="800" fill="#8fae7b"/><g transform="translate(600 380)"><path d="M0 -120c-70 0 -120 45 -120 130 0 55 22 95 22 145 0 40 18 55 34 55s18 -35 30 -70 18 -20 34 -20 22 -15 34 20 14 70 30 70 34 -15 34 -55c0 -50 22 -90 22 -145 0 -85 -50 -130 -120 -130z" fill="#f4f7ed"/></g><text x="600" y="620" font-family="Georgia,serif" font-size="70" fill="#f4f7ed" text-anchor="middle" font-style="italic">Jamestown Dentistry</text></svg>
+</template>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:900},&quot;announcement&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Now welcoming new patients — call 336.454.3116 to schedule.&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Content&quot;},&quot;phone&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;336.454.3116&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Content&quot;}}">
+class Component extends DCLogic {
+  state = { route: 'home', menuOpen: false, sent: false };
+
+  componentDidMount() {
+    this._reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this._lastRoute = this.state.route;
+    this._sync = () => {
+      const h = (location.hash || '').replace(/^#\/?/, '') || 'home';
+      this.setState({ route: h, menuOpen: false, sent: false });
+    };
+    window.addEventListener('hashchange', this._sync);
+    if (location.hash) this._sync();
+    this._initAnims();
+  }
+
+  componentDidUpdate() {
+    if (this._lastRoute !== this.state.route) {
+      this._lastRoute = this.state.route;
+      this._onRouteChanged();
+    }
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('hashchange', this._sync);
+    if (this._onScroll) window.removeEventListener('scroll', this._onScroll);
+    this._stopParticles();
+    if (window.ScrollTrigger) window.ScrollTrigger.getAll().forEach(t => t.kill());
+  }
+
+  _initAnims() {
+    const start = () => {
+      if (!window.gsap) { this._gsapTimer = setTimeout(start, 60); return; }
+      this._gsap = window.gsap;
+      if (window.ScrollTrigger) this._gsap.registerPlugin(window.ScrollTrigger);
+      const veil = document.querySelector('.jfd .route-veil');
+      if (veil && !this._reduced) this._gsap.set(veil, { yPercent: 100 });
+      this._setupNavShrink();
+      this._setupScroll();
+      this._startParticles();
+    };
+    start();
+  }
+
+  _setupNavShrink() {
+    const hdr = document.querySelector('.jfd .hdr');
+    if (!hdr) return;
+    this._onScroll = () => { hdr.classList.toggle('shrunk', window.scrollY > 40); };
+    window.addEventListener('scroll', this._onScroll, { passive: true });
+    this._onScroll();
+  }
+
+  _setupScroll() {
+    const g = this._gsap, ST = window.ScrollTrigger;
+    if (!g || !ST || this._reduced) return;
+    ST.getAll().forEach(t => t.kill());
+    const hero = document.querySelector('.jfd .hero-img');
+    if (hero) {
+      g.set(hero, { transformOrigin: 'right center' });
+      g.fromTo(hero, { yPercent: 0, scale: 1.3 }, { yPercent: 14, scale: 1.38, ease: 'none',
+        scrollTrigger: { trigger: '.jfd .hero', start: 'top top', end: 'bottom top', scrub: true } });
+    }
+    const sel = '.jfd main .hero-copy>*, .jfd main .eyebrow, .jfd main .disp, .jfd main .lead, .jfd main .svc-card, .jfd main .tan-card, .jfd main .doc-card, .jfd main .quote, .jfd main .pillar, .jfd main .val, .jfd main .tm-card, .jfd main .card-soft, .jfd main .form, .jfd main .cta-band, .jfd main .ph, .jfd main .bio, .jfd main .info-line, .jfd main .pts, .jfd main .faq-group-t, .jfd main .faq-item, .jfd main .appr';
+    const targets = Array.from(document.querySelectorAll(sel));
+    if (this._io) this._io.disconnect();
+    let prevParent = null, idx = 0;
+    const meta = new Map();
+    targets.forEach((el) => {
+      const parent = el.parentElement;
+      if (parent === prevParent) { idx += 1; } else { idx = 0; prevParent = parent; }
+      meta.set(el, Math.min(idx, 6) * 0.07);
+      g.set(el, { opacity: 0, y: 30 });
+    });
+    const reveal = (el) => {
+      g.to(el, { opacity: 1, y: 0, duration: 0.7, delay: meta.get(el) || 0, ease: 'power2.out' });
+    };
+    const revealInView = () => {
+      const vh = window.innerHeight;
+      targets.forEach((el) => {
+        if (this._revealed.has(el)) return;
+        const r = el.getBoundingClientRect();
+        if (r.top < vh * 0.92 && r.bottom > 0) { this._revealed.add(el); reveal(el); }
+      });
+      if (this._revealed.size >= targets.length && this._onScrollReveal) {
+        window.removeEventListener('scroll', this._onScrollReveal);
+        this._onScrollReveal = null;
+      }
+    };
+    this._revealed = new Set();
+    if (this._io) this._io.disconnect();
+    this._io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting && !this._revealed.has(e.target)) { this._revealed.add(e.target); reveal(e.target); this._io.unobserve(e.target); }
+      });
+    }, { rootMargin: '0px 0px -8% 0px' });
+    targets.forEach((el) => this._io.observe(el));
+    revealInView();
+    if (this._onScrollReveal) window.removeEventListener('scroll', this._onScrollReveal);
+    this._onScrollReveal = revealInView;
+    window.addEventListener('scroll', this._onScrollReveal, { passive: true });
+    clearTimeout(this._revealFailsafe);
+    this._revealFailsafe = setTimeout(() => {
+      targets.forEach((el) => { if (!this._revealed.has(el)) { this._revealed.add(el); reveal(el); } });
+    }, 2600);
+    ST.refresh();
+  }
+
+  goto(r) {
+    if (this._animating) return;
+    const g = this._gsap, veil = document.querySelector('.jfd .route-veil');
+    if (g && veil && !this._reduced) {
+      this._animating = true;
+      g.to(veil, { yPercent: 0, duration: 0.45, ease: 'power3.inOut', onComplete: () => this._commit(r) });
+    } else { this._commit(r); }
+  }
+
+  _commit(r) {
+    if (('#/' + r) !== location.hash) { location.hash = '/' + r; }
+    else { this.setState({ route: r, menuOpen: false, sent: false }); }
+  }
+
+  _onRouteChanged() {
+    window.scrollTo(0, 0);
+    this._restartParticles();
+    this._setupScroll();
+    const g = this._gsap, veil = document.querySelector('.jfd .route-veil');
+    if (g && veil && !this._reduced) {
+      g.to(veil, { yPercent: -100, duration: 0.55, ease: 'power3.inOut', onComplete: () => {
+        g.set(veil, { yPercent: 100 });
+        this._animating = false;
+        if (window.ScrollTrigger) window.ScrollTrigger.refresh();
+      } });
+    } else { this._animating = false; }
+  }
+
+  _startParticles() {
+    this._stopParticles();
+    const cv = document.querySelector('.jfd .hero-particles');
+    if (!cv || this._reduced) return;
+    const ctx = cv.getContext('2d');
+    let W = 0, H = 0, dpr = 1, parts = [];
+    const resize = () => {
+      const rect = cv.getBoundingClientRect();
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      W = rect.width; H = rect.height;
+      cv.width = Math.max(1, W * dpr); cv.height = Math.max(1, H * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const n = Math.round(Math.min(60, W / 22));
+      parts = Array.from({ length: n }, () => ({
+        x: Math.random() * W, y: Math.random() * H, r: 1.4 + Math.random() * 4.4,
+        a: 0.08 + Math.random() * 0.32, vy: 0.12 + Math.random() * 0.45,
+        ph: Math.random() * 6.28, amp: 5 + Math.random() * 16 }));
+    };
+    resize();
+    this._pResize = resize;
+    window.addEventListener('resize', this._pResize);
+    const tick = () => {
+      ctx.clearRect(0, 0, W, H);
+      for (const p of parts) {
+        p.y -= p.vy; p.ph += 0.008;
+        const x = p.x + Math.sin(p.ph) * p.amp;
+        if (p.y < -12) { p.y = H + 12; p.x = Math.random() * W; }
+        ctx.beginPath();
+        ctx.arc(x, p.y, p.r, 0, 6.2832);
+        ctx.fillStyle = 'rgba(255,255,255,' + p.a + ')';
+        ctx.fill();
+      }
+      this._praf = requestAnimationFrame(tick);
+    };
+    tick();
+  }
+
+  _restartParticles() { this._startParticles(); }
+
+  _stopParticles() {
+    if (this._praf) cancelAnimationFrame(this._praf);
+    this._praf = null;
+    if (this._pResize) { window.removeEventListener('resize', this._pResize); this._pResize = null; }
+  }
+
+  renderVals() {
+    const r = this.state.route;
+    const F = (label, type, opts) => {
+      opts = opts || {};
+      const t = type || 'text';
+      const isInput = t === 'text' || t === 'email' || t === 'tel' || t === 'date';
+      return { label, isInput, inputType: isInput ? t : 'text', isArea: t === 'area', isSelect: t === 'select', isCheck: t === 'check', showLabel: t !== 'check', options: opts.options || [], ph: opts.ph || '', wcls: (opts.full ? 'full ' : '') + (t === 'check' ? 'is-check' : '') };
+    };
+    const services = {
+      cleanings: { label: 'Cleanings', title: 'Cleanings & prevention.', imgLabel: 'hygiene photo',
+        blurb: 'A partnership to protect your natural teeth and prevent dental disease.',
+        body: 'A preventive dental program is a partnership between the patient, dentist, and dental team to protect natural teeth and supporting structures and prevent dental disease. Prevention begins at home with good oral hygiene and a balanced diet and continues in the dental office through regular exams, cleanings, X-rays, and preventive treatments like fluoride and sealants. Focusing on prevention helps avoid more serious and costly dental problems and supports a healthy, confident smile.',
+        points: ['Regular exams and cleanings', 'Digital X-rays', 'Fluoride and sealant treatments', 'Guidance for good home care'] },
+      cosmetic: { label: 'Cosmetic', title: 'Cosmetic dentistry.', imgLabel: 'smile makeover photo',
+        blurb: 'Comfortable, efficient, and affordable ways to enhance your smile.',
+        body: 'A healthy, bright smile enhances your appearance and helps you smile with confidence. Thanks to advances in modern cosmetic dentistry, many smile improvements can be achieved with comfortable, efficient, and affordable treatments. Cosmetic dental care can improve the size, shape, color, alignment, and spacing of teeth, repair damaged or worn teeth, replace missing teeth, and update older dental work. Your smile makes a lasting first impression!',
+        points: ['Improve color, shape, and spacing', 'Repair damaged or worn teeth', 'Replace missing teeth', 'Update older dental work'] },
+      implants: { label: 'Implants', title: 'Dental implants.', imgLabel: 'restoration photo',
+        blurb: 'A durable, natural-looking solution for replacing missing teeth.',
+        body: 'Dental implants are a durable, natural-looking solution for replacing missing teeth. They are anchored in the jawbone to function like natural tooth roots, restoring chewing ability, speech, and confidence. With proper care and regular dental visits, implants can last for many years.',
+        points: ['Anchored like natural tooth roots', 'Restores chewing and speech', 'Natural-looking results', 'Long-lasting with proper care'] },
+      invisalign: { label: 'Invisalign', title: 'Invisalign® clear aligners.', imgLabel: 'aligner photo',
+        blurb: 'A discreet, convenient clear-aligner alternative to braces.',
+        body: 'Invisalign® is a clear aligner system that straightens teeth using custom-made, removable trays designed for comfort and precision. It offers a discreet, convenient alternative to braces while allowing you to eat, brush, and floss normally during treatment.',
+        points: ['Custom-made, removable trays', 'Discreet and comfortable', 'Eat, brush, and floss normally', 'Designed for comfort and precision'] },
+      'oral-surgery': { label: 'Oral Surgery', title: 'Oral surgery.', imgLabel: 'oral surgery photo',
+        blurb: 'Extractions, bone grafting, and Botox therapy with a patient-centered approach.',
+        body: 'We offer tooth extractions and bone grafting to address damaged teeth, preserve jawbone structure, and support future restorative options. In addition, we provide Botox therapy as a non-surgical treatment option for TMJ-related pain, jaw tension, and muscle overuse. These services allow us to relieve discomfort, promote healing, and restore comfort and function with a patient-centered approach.',
+        points: ['Tooth extractions', 'Bone grafting', 'Botox therapy for TMJ pain', 'Relief for jaw tension and overuse'] },
+      'root-canals': { label: 'Root Canals', title: 'Root canal therapy.', imgLabel: 'root canal photo',
+        blurb: 'Save an affected tooth and restore it to full function.',
+        body: 'Root canal therapy is needed when the nerve of a tooth is affected by decay or infection. In order to save the tooth, the pulp (the living tissue inside the tooth), nerves, bacteria, and any decay are removed and the resulting space is filled with special, medicated, dental materials, which restore the tooth to its function.',
+        points: ['Treats decay or infection in the nerve', 'Removes pulp, bacteria, and decay', 'Restores the tooth to function', 'Helps you keep your natural tooth'] },
+      'periodontal-disease': { label: 'Periodontal', title: 'Periodontal disease.', imgLabel: 'periodontal care photo',
+        blurb: 'Treating gum disease to protect your gums and supporting bone.',
+        body: 'Periodontal (gum) disease is an infection of the gums and supporting bone caused by plaque and bacteria that build up around the teeth. If left untreated, it can lead to gum recession, bone loss, and is the leading cause of tooth loss in adults.',
+        points: ['Caused by plaque and bacteria buildup', 'Can lead to gum recession', 'Prevents bone loss', 'Leading cause of adult tooth loss'] },
+      'tmd-treatments': { label: 'TMD', title: 'TMD treatments.', imgLabel: 'TMD therapy photo',
+        blurb: 'Relief for jaw pain, tension, and teeth grinding \u2014 without surgery.',
+        body: 'TMD (temporomandibular joint disorder) affects the jaw joint and surrounding muscles, often causing jaw pain, headaches, clicking or popping, and difficulty chewing. It is frequently linked to clenching, grinding, stress, and muscle overuse. We offer two conservative, non-surgical solutions \u2014 therapeutic Botox\u00ae and custom-fitted night guards \u2014 to relieve discomfort, protect your teeth, and restore comfortable jaw function.',
+        points: ['Therapeutic Botox\u00ae to relax overworked jaw muscles', 'Custom-fitted night guards to protect teeth and ease the joint', 'Relief from jaw pain, headaches, and clicking', 'A conservative, non-surgical approach'],
+        solutions: [
+          { name: 'Therapeutic Botox\u00ae', desc: 'When TMD is driven by overactive or tense muscles, small, targeted doses of Botox\u00ae are administered into the jaw and facial muscles (such as the masseter and temporalis). By gently relaxing these muscles, Botox\u00ae reduces the clenching force that strains the joint \u2014 easing jaw pain, tension headaches, and soreness. Treatment takes only a few minutes in the office, requires no downtime, and results typically last three to four months before a simple follow-up.' },
+          { name: 'Custom-fitted night guards', desc: 'Many patients grind or clench their teeth during sleep (bruxism), placing constant stress on the jaw joint and wearing down teeth. We take precise impressions of your mouth to fabricate a custom night guard that fits comfortably and precisely. Worn while you sleep, it cushions the bite, holds the jaw in a relaxed position, and protects your teeth from grinding \u2014 relieving pressure on the joint and preventing further damage.' },
+        ] },
+    };
+    const svc = services[r] || null;
+    const g = (k) => () => this.goto(k);
+    const inServices = r === 'services' || !!svc;
+    const cardKeys = ['cleanings', 'cosmetic', 'implants', 'oral-surgery', 'root-canals', 'invisalign', 'periodontal-disease', 'tmd-treatments'];
+    const serviceCards = cardKeys.map(k => ({ label: services[k].label, desc: services[k].blurb, go: g(k) }));
+
+    return {
+      announcement: this.props.announcement ?? 'Now welcoming new patients — call 336.454.3116 to schedule.',
+      phone: this.props.phone ?? '336.454.3116',
+      isHome: r === 'home',
+      isExpertise: r === 'expertise',
+      isServices: r === 'services',
+      isService: !!svc,
+      isTeam: r === 'team',
+      isPatients: r === 'patients',
+      isApproach: r === 'approach',
+      isNewpatient: r === 'new-patient',
+      isFaq: r === 'faq',
+      svc: svc || {},
+      na: {
+        expertise: r === 'expertise' ? 'on' : '',
+        services: inServices ? 'on' : '',
+        team: r === 'team' ? 'on' : '',
+        newpatient: r === 'new-patient' ? 'on' : '',
+      },
+      menuClass: this.state.menuOpen ? 'open' : '',
+      sent: this.state.sent,
+      notSent: !this.state.sent,
+      toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })),
+      submit: (e) => { e.preventDefault(); this.setState({ sent: true }); window.scrollTo(0, 0); },
+      submitPaperwork: (e) => {
+        e.preventDefault();
+        const form = e.currentTarget;
+        const subj = (form.querySelector('[name=__subject]') || {}).value || 'Patient form';
+        const parts = [];
+        form.querySelectorAll('[data-fld]').forEach((el) => {
+          const lbl = el.getAttribute('data-lbl');
+          if (el.type === 'checkbox') { if (el.checked) parts.push(lbl + ': Yes'); }
+          else { const v = (el.value || '').trim(); if (v && !/^select/i.test(v) && v !== 'Not applicable' && v !== 'Not a student' && v !== 'No preference') parts.push(lbl + ': ' + v); }
+        });
+        const body = parts.length ? parts.join('\n') : '(No fields completed yet.)';
+        window.location.href = 'mailto:info@jamestownfamilydentistry.com?subject=' + encodeURIComponent(subj) + '&body=' + encodeURIComponent(body);
+      },
+      resetForm: () => this.setState({ sent: false }),
+      go: {
+        home: g('home'), expertise: g('expertise'), services: g('services'),
+        team: g('team'), newpatient: g('new-patient'), patients: g('patients'),
+        approach: g('approach'), cleanings: g('cleanings'), cosmetic: g('cosmetic'),
+        implants: g('implants'), invisalign: g('invisalign'), faq: g('faq'),
+        oralSurgery: g('oral-surgery'), rootCanals: g('root-canals'), periodontal: g('periodontal-disease'), tmd: g('tmd-treatments'),
+      },
+      approachSteps: [
+        { n: '01', t: 'Initial Consultation', d: 'Our team is dedicated to understanding your unique smile goals and oral health needs. Schedule a consultation to begin your journey towards a confident, beautiful smile.' },
+        { n: '02', t: 'Personalized Treatment', d: 'We tailor our treatments to address your specific dental concerns, ensuring the best care for a radiant, healthier smile.' },
+        { n: '03', t: 'Continued Care', d: 'We provide thorough follow-up care to monitor your progress and maintain your oral health, ensuring long-lasting results.' },
+        { n: '04', t: 'Post-Treatment Care', d: 'Proper aftercare is essential for a speedy recovery and sustained dental wellness. We will guide you through the post-treatment phase to optimize your oral health.' },
+        { n: '05', t: 'Emergency Dentistry', d: 'Facing a dental emergency? Contact us immediately for prompt, compassionate care from our experienced dental team.' },
+        { n: '06', t: 'Preventive Dentistry', d: 'Prevention is crucial for optimal oral health. Our preventive dentistry services are designed to preserve the health and radiance of your smile.' },
+      ],
+      serviceCards,
+      postOp: [
+        { label: 'Fillings', intro: 'Modern tooth-colored fillings set quickly, so recovery is usually simple. A little sensitivity as the numbness wears off is normal.', blocks: [
+          { h: 'While You\u2019re Numb', list: ['Avoid chewing until the numbness fully wears off to prevent biting your cheek, lip, or tongue.', 'Stick to lukewarm foods and drinks \u2014 you won\u2019t sense hot temperatures accurately yet.'] },
+          { h: 'Sensitivity', p: 'It\u2019s common to feel some sensitivity to hot, cold, or pressure for a few days to a couple of weeks. This typically fades on its own. Over-the-counter pain relievers may be used as directed if needed.' },
+          { h: 'Eating & Care', list: ['You may eat as soon as the numbness is gone; start with softer foods if the area feels tender.', 'Brush and floss normally right away to keep the area clean.', 'If your bite feels uneven or high once the numbness wears off, call our office for a quick adjustment.'] },
+          { h: 'When to Call Our Office', cls: 'warn', list: ['Sharp pain when biting that does not improve', 'Sensitivity that worsens or lasts beyond two to three weeks', 'A filling that feels loose, cracked, or falls out'] },
+        ] },
+        { label: 'Crowns', intro: 'If a temporary crown was placed while your permanent crown is made, a few precautions will keep it comfortable and secure.', blocks: [
+          { h: 'Caring for a Temporary Crown', list: ['Avoid sticky or chewy foods (gum, caramel, taffy) that can pull the temporary off.', 'Avoid hard foods that could crack it; chew on the opposite side when possible.', 'When flossing, slide the floss out sideways rather than lifting up, so you don\u2019t dislodge the temporary.'] },
+          { h: 'Sensitivity & Comfort', p: 'Some sensitivity to hot, cold, and pressure is normal after crown preparation and usually eases within a few days. Warm salt-water rinses can soothe tender gums. Over-the-counter pain relievers may be used as directed.' },
+          { h: 'After Your Permanent Crown', list: ['Sensitivity should settle within a few days once the final crown is cemented.', 'Resume normal brushing and flossing \u2014 caring for a crowned tooth is just like a natural tooth.', 'If your bite feels high or uneven, call us for a simple adjustment.'] },
+          { h: 'When to Call Our Office', cls: 'warn', list: ['A temporary or permanent crown comes off (save it and call us)', 'Persistent pain or throbbing', 'A bite that feels off after a few days'] },
+        ] },
+        { label: 'Extractions', intro: 'After a tooth is extracted, it\u2019s important for a blood clot to form to stop the bleeding and begin the healing process. We\u2019ll have you bite on a gauze pad for 30\u201345 minutes after your procedure.', blocks: [
+          { h: 'Blood Clot Formation \u2014 The Key to Healing', list: ['If bleeding or oozing persists, place a fresh gauze pad and bite firmly for another 30 minutes; you may need to repeat this several times.', 'Once the clot forms, it\u2019s extremely important not to disturb or dislodge it, as it\u2019s critical to healing.'] },
+          { h: 'What Not to Do', cls: 'warn', list: ['Do not rinse vigorously.', 'Do not suck on straws.', 'Do not smoke for 72 hours.', 'Do not drink alcohol.', 'Do not brush on the extraction site \u2014 but do brush all the teeth around it.', 'Do not exercise vigorously for the next 24 hours.'] },
+          { h: 'Dry Socket', p: 'Without the protection of a blood clot, the bone and nerve endings become exposed to air, food, and liquids. The resulting \u201cdry socket\u201d is very painful and delays healing. Following the instructions above minimizes your chances of this painful condition \u2014 if you suspect a dry socket, please call our office.' },
+          { h: 'Pain and Swelling', list: ['Use the pain medication we\u2019ve recommended, prescription or over-the-counter, as directed.', 'If antibiotics were prescribed, take the entire course even if symptoms are gone.', 'Drink plenty of fluids and eat nutritious soft food on the day of the extraction; eat normally once comfortable.', 'Resume your normal routine after 24 hours \u2014 brushing twice daily and flossing once daily, except right at the extraction site.', 'A little bright-pink blood when you rinse on the first day is normal.'] },
+          { h: 'When to Call Our Office', cls: 'warn', list: ['Heavy bleeding', 'Severe pain', 'Continued swelling for 2\u20133 days', 'A reaction to prescribed medication'] },
+        ] },
+        { label: 'Implants', intro: 'Care in the immediate postoperative period helps your implant heal well. Aside from normal hygiene, it\u2019s best to leave the implant alone for the first two weeks, limiting harder foods and chewing away from the area during the 10\u201312 week integration stage.', blocks: [
+          { h: 'Bleeding', p: 'Minimal bleeding is expected and may continue for several hours. Fold two pieces of damp gauze over the site and gently bite for 30\u201360 minutes with steady pressure; rest with your head elevated. Pink or blood-tinged saliva for 2\u20133 days is normal. Sutures may last 2\u20133 days \u2014 leave them alone and do not pull or cut them yourself.' },
+          { h: 'Swelling', p: 'Swelling is a normal reaction to surgery. It appears around 24 hours after surgery and peaks at 2\u20133 days, then decreases over 7\u201310 days. Apply ice packs to the outside of the face 20 minutes on, 20 minutes off while awake for the first 24 hours. After 48 hours, switch to a warm, moist compress.' },
+          { h: 'Medication & Pain', list: ['If you have no allergy to NSAIDs (ibuprofen, Motrin, Advil), take some before the local anesthetic wears off.', 'Alternate ibuprofen (three 200mg tablets) with extra-strength Tylenol every 3\u20134 hours as needed.', 'Use any prescribed antibacterial rinse twice daily for the first two weeks.', 'Never exceed the recommended dosage. If you take Plavix or Coumadin, do NOT take ibuprofen or aspirin products.'] },
+          { h: 'Diet, Hygiene & Activity', list: ['While numb, avoid hot liquids and foods; applesauce, pudding, and jello are fine. Progress to solid foods once numbness wears off, chewing away from the site.', 'Keep your mouth clean \u2014 clean thoroughly after each meal starting the day after surgery with a soft toothbrush. Do not rinse the day of surgery.', 'Rest with no physical activity for the first 48 hours, then resume activity as tolerated.', 'Avoid carbonated beverages and hot liquids for 48 hours.'] },
+          { h: 'Healing', p: 'Bad breath is common and disappears as healing occurs. White or firm tissue at the site after 2\u20133 days signifies normal healing, and it\u2019s not unusual to see the silver healing cap through the gum tissue.' },
+        ] },
+        { label: 'Root Canals', intro: 'It\u2019s normal to feel mild-to-moderate soreness or tenderness for a few days, sensitivity to pressure or chewing, and slight swelling or jaw stiffness from keeping your mouth open. These symptoms typically improve within 2\u20135 days.', blocks: [
+          { h: 'Pain Management', list: ['Take any prescribed medications exactly as directed.', 'For mild-to-moderate discomfort, over-the-counter ibuprofen or acetaminophen may be used unless otherwise advised.', 'Avoid aspirin if you are prone to bleeding or have been told not to take it.'] },
+          { h: 'Eating & Chewing', list: ['Avoid chewing on the treated tooth until it has been fully restored with a permanent filling or crown.', 'Stick to soft foods for the first 24 hours.', 'Avoid hard, sticky, or crunchy foods that could damage a temporary filling.'] },
+          { h: 'Temporary Filling & Oral Hygiene', list: ['A temporary filling may feel slightly raised at first; avoid gum and sticky foods that could dislodge it.', 'Continue brushing and flossing as normal, being gentle around the treated area.', 'Rinse with warm salt water (\u00bd teaspoon in 8 oz warm water) 2\u20133 times daily to reduce inflammation.'] },
+          { h: 'Follow-Up & Final Restoration', p: 'A permanent crown or filling is usually required to protect the tooth. Delaying the final restoration increases the risk of fracture or reinfection, so please keep all follow-up appointments as scheduled.' },
+          { h: 'When to Call Our Office', cls: 'warn', list: ['Increasing swelling after 48 hours', 'Fever', 'Severe or persistent pain not relieved by medication', 'A bad taste, drainage, or pus'] },
+        ] },
+        { label: 'Whitening', intro: 'Professional whitening brightens your smile safely. Some temporary sensitivity is normal \u2014 these steps keep you comfortable and protect your results.', blocks: [
+          { h: 'Managing Sensitivity', list: ['Mild tooth or gum sensitivity for 24\u201348 hours is common and temporary.', 'Use a toothpaste made for sensitive teeth before and after treatment.', 'If needed, take an over-the-counter pain reliever as directed and space out whitening sessions.'] },
+          { h: 'The First 48 Hours \u2014 Watch the \u201cWhite Diet\u201d', p: 'Your teeth are more porous right after whitening, so avoid staining foods and drinks for at least 48 hours.', list: ['Avoid coffee, tea, red wine, cola, and dark juices.', 'Avoid tomato sauce, berries, soy sauce, and other deeply colored foods.', 'Avoid tobacco products, which quickly reverse your results.', 'Stick to lighter foods \u2014 water, milk, plain yogurt, chicken, rice, and pasta.'] },
+          { h: 'Maintaining Your Results', list: ['Brush twice daily and floss once daily to prevent new stains.', 'Rinse with water after consuming staining foods or drinks.', 'Use a straw for dark beverages when possible.', 'Keep up regular cleanings and touch-ups as recommended.'] },
+          { h: 'When to Call Our Office', cls: 'warn', list: ['Sensitivity or gum irritation lasting more than a few days', 'Sharp or persistent pain', 'Uneven or blotchy results you\u2019d like us to review'] },
+        ] },
+      ],
+      patientForms: [
+        { label: 'New Patient Registration', subject: 'New Patient Registration \u2014 Jamestown Family Dentistry', intro: 'Complete the fields below and click submit. Please bring your photo ID and insurance card to your first visit.', groups: [
+          { h: 'Patient Information', fields: [
+            F('Full name', 'text', { full: true, ph: 'First and last' }),
+            F('Preferred name', 'text', { ph: 'Optional' }),
+            F('Date of birth', 'date'),
+            F('Sex', 'select', { options: ['Select\u2026', 'Female', 'Male', 'Prefer not to say'] }),
+            F('Marital status', 'select', { options: ['Select\u2026', 'Single', 'Married', 'Divorced', 'Widowed'] }),
+            F('Home address', 'text', { full: true, ph: 'Street, city, state, ZIP' }),
+            F('Cell phone', 'tel', { ph: '(336) 000-0000' }),
+            F('Home phone', 'tel', { ph: 'Optional' }),
+            F('Work phone', 'tel', { ph: 'Optional' }),
+            F('Email address', 'email', { full: true, ph: 'you@email.com' }),
+          ] },
+          { h: 'Employment & Preferences', fields: [
+            F('Employment status', 'select', { options: ['Select\u2026', 'Full-time', 'Part-time', 'Retired', 'Student', 'Not employed'] }),
+            F('Student status', 'select', { options: ['Not a student', 'Full-time student', 'Part-time student'] }),
+            F('Preferred dentist', 'select', { options: ['No preference', 'Dr. Puckett', 'Dr. Chadwick'] }),
+            F('Preferred hygienist', 'text', { ph: 'Optional' }),
+            F('Preferred pharmacy', 'text', { full: true, ph: 'Name and location' }),
+          ] },
+          { h: 'Responsible Party (if not the patient)', fields: [
+            F('Responsible party name', 'text', { full: true }),
+            F('Relationship to patient', 'text'),
+            F('Responsible party date of birth', 'date'),
+            F('Responsible party phone', 'tel'),
+            F('Responsible party address', 'text', { full: true }),
+          ] },
+          { h: 'Insurance Information', note: 'Please bring your insurance card to your visit rather than entering ID numbers here.', fields: [
+            F('Insurance company', 'text', { full: true }),
+            F('Name of insured', 'text'),
+            F('Relationship to insured', 'select', { options: ['Self', 'Spouse', 'Parent', 'Other'] }),
+            F('Insured date of birth', 'date'),
+            F('Insured employer', 'text'),
+            F('Secondary insurance (if any)', 'text', { full: true }),
+          ] },
+        ] },
+        { label: 'Medical History Form', subject: 'Medical History Form \u2014 Jamestown Family Dentistry', intro: 'Because oral health is closely connected to overall health, a complete picture lets our team tailor treatment safely. All information is kept confidential.', groups: [
+          { h: 'Patient & Physician', fields: [
+            F('Patient full name', 'text', { full: true }),
+            F('Date of birth', 'date'),
+            F('Primary physician', 'text'),
+            F('Physician phone', 'tel'),
+            F('Date of last physical exam', 'date'),
+            F('Recent hospitalizations or surgeries', 'area', { full: true, ph: 'List any, with approximate dates' }),
+          ] },
+          { h: 'Medications & Allergies', fields: [
+            F('Current medications, vitamins & supplements', 'area', { full: true, ph: 'Include dosages if known' }),
+            F('Allergies', 'area', { full: true, ph: 'Medications, latex, metals, foods\u2026' }),
+            F('Reactions to local anesthetic or dental materials', 'text', { full: true, ph: 'If any' }),
+          ] },
+          { h: 'Medical Conditions', note: 'Check any that you have or have had:', fields: [
+            F('Heart condition', 'check'),
+            F('High blood pressure', 'check'),
+            F('Heart murmur', 'check'),
+            F('Diabetes', 'check'),
+            F('Thyroid or endocrine condition', 'check'),
+            F('Asthma or respiratory condition', 'check'),
+            F('Bleeding disorder or blood thinners', 'check'),
+            F('Artificial joints or heart valves', 'check'),
+            F('Other significant condition', 'text', { full: true, ph: 'Please describe' }),
+          ] },
+          { h: 'Dental History & Notes', fields: [
+            F('Reason for today\u2019s visit', 'text', { full: true }),
+            F('Date of last dental visit', 'date'),
+            F('Currently pregnant or nursing', 'select', { options: ['Not applicable', 'Pregnant', 'Nursing', 'No'] }),
+            F('Tobacco use', 'select', { options: ['Select\u2026', 'None', 'Occasional', 'Daily', 'Former'] }),
+            F('Dental anxiety or anything else we should know', 'area', { full: true }),
+          ] },
+        ] },
+      ],
+      faqPreview: [
+        { q: 'How often should I have a dental exam and cleaning?', a: 'Most patients benefit from exams and cleanings every six months. Regular visits help prevent cavities and gum disease, and allow us to catch small issues before they become more serious.' },
+        { q: 'How often should I brush and floss?', a: 'You should brush at least twice a day and floss once daily. Brushing cleans the surfaces of your teeth, while flossing removes plaque and debris between teeth and below the gumline.' },
+        { q: 'What are my options if I have missing teeth?', a: 'Missing teeth can be replaced with dental implants, bridges, or dentures. Replacing missing teeth helps restore function, prevent shifting, and maintain facial structure.' },
+        { q: 'What should I do if a tooth is knocked out?', a: 'This is a dental emergency. Gently rinse the tooth without scrubbing, keep it moist, and contact our office immediately. Prompt treatment may allow the tooth to be saved.' },
+      ],
+      faqGroups: [
+        { title: 'Preventive care & oral hygiene', items: [
+          { q: 'How often should I have a dental exam and cleaning?', a: 'Most patients benefit from exams and cleanings every six months. Regular visits help prevent cavities and gum disease, and allow us to catch small issues before they become more serious.' },
+          { q: 'How often should I brush and floss?', a: 'You should brush at least twice a day and floss once daily. Brushing cleans the surfaces of your teeth, while flossing removes plaque and debris between teeth and below the gumline.' },
+          { q: 'Why is it important to use dental floss?', a: 'Flossing removes plaque and bacteria from areas your toothbrush cannot reach. Without flossing, these areas are more likely to develop cavities and gum disease.' },
+          { q: 'When are sealants recommended?', a: 'Sealants are commonly recommended for children and teens to protect molars from cavities, but adults may benefit as well. They help seal deep grooves where food and bacteria tend to collect.' },
+        ] },
+        { title: 'Gum health & overall oral wellness', items: [
+          { q: 'How can I tell if I have gingivitis or periodontitis (gum disease)?', a: 'Symptoms may include red, swollen, or bleeding gums, bad breath, or gum recession. Early gum disease is often reversible, which is why routine dental visits are important.' },
+          { q: 'What should I do if I have bad breath?', a: 'Persistent bad breath can be caused by poor oral hygiene, gum disease, dry mouth, or other health conditions. A dental exam can help identify the cause and recommend treatment.' },
+          { q: 'Is there a correlation between heart disease and periodontal disease?', a: 'Studies suggest a link between gum disease and certain systemic health conditions, including heart disease. Maintaining healthy gums may support overall health.' },
+        ] },
+        { title: 'Cosmetic dentistry & smile enhancement', items: [
+          { q: 'Why straighten teeth?', a: 'Straight teeth are easier to clean and can improve bite alignment, oral health, and confidence. Orthodontic treatment benefits both function and appearance.' },
+          { q: 'How can cosmetic dentistry help improve the appearance of my smile?', a: 'Cosmetic dentistry can address discoloration, gaps, chips, and misalignment. Treatments are customized to help you achieve a natural, confident smile.' },
+          { q: 'What are porcelain veneers and how can they improve my smile?', a: 'Porcelain veneers are thin shells placed on the front of teeth to enhance shape, color, and alignment. They provide durable, natural-looking results.' },
+          { q: 'What can I do about stained or discolored teeth?', a: 'Professional whitening and cosmetic treatments can safely brighten your smile. We\u2019ll recommend the best option based on the cause of discoloration.' },
+        ] },
+        { title: 'Restorative dentistry', items: [
+          { q: 'Are amalgam (silver) fillings safe?', a: 'Yes. Amalgam fillings have been used safely for many years. If you prefer a more natural-looking option, tooth-colored alternatives are available.' },
+          { q: 'What can be done about old, unattractive, or discolored fillings?', a: 'Older fillings can often be replaced with tooth-colored materials that blend naturally with your teeth and improve both appearance and function.' },
+          { q: 'What are my options if I have missing teeth?', a: 'Missing teeth can be replaced with dental implants, bridges, or dentures. Replacing missing teeth helps restore function, prevent shifting, and maintain facial structure.' },
+        ] },
+        { title: 'Dental emergencies', items: [
+          { q: 'What should I do if a tooth is knocked out?', a: 'This is a dental emergency. Gently rinse the tooth without scrubbing, keep it moist, and contact our office immediately. Prompt treatment may allow the tooth to be saved.' },
+        ] },
+      ],
+      staff: [
+        { name: 'Team Member', role: 'Office Manager' },
+        { name: 'Team Member', role: 'Lead Hygienist' },
+        { name: 'Team Member', role: 'Dental Hygienist' },
+        { name: 'Team Member', role: 'Dental Hygienist' },
+        { name: 'Team Member', role: 'Dental Assistant' },
+        { name: 'Team Member', role: 'Dental Assistant' },
+        { name: 'Team Member', role: 'Patient Coordinator' },
+        { name: 'Team Member', role: 'Front Desk' },
+      ],
+      reviews: [
+        { author: 'Angela Hagler', cls: '', quote: 'We are so thankful to have Dr. Puckett as our family dentist. He is patient and kind and makes each of us feel special. Time and again he has gone above and beyond to give us the best experience possible. Everyone in the office is friendly and supportive — they truly make going to the dentist a pleasurable experience.' },
+        { author: 'Joe Hagler', cls: 'sage', quote: 'As someone who has never enjoyed anyone working in my mouth, Dr. Puckett has made visiting the dentist a much less dreaded experience. His personal interest in me and my family shows his true character, and I am always confident that his treatment advice is what is best for us.' },
+        { author: 'Debbie Kahn', cls: '', quote: 'I have had a multitude of dental procedures over my lifetime, and Dr. Puckett is by far the best cosmetic dentist I have ever had the pleasure of. He is extremely versatile, a complete perfectionist, and highly proficient — he knows how to make a smile look fabulous.' },
+        { author: 'Rose Pratt', cls: 'sage', quote: 'Dr. Puckett and his staff go above and beyond to make your experience pleasant and comfortable. He was great at discussing several plans of procedures and never forced me into anything I was uncomfortable with. I recommend him all the time.' },
+        { author: 'Earl & Petra Schaefer', cls: '', quote: 'Our standards and expectations were high after 35 years with the UNC Dental School Clinic. With our very first visit to Dr. Puckett\u2019s office we were sure we had made the right choice — all the latest technology and techniques for a state-of-the-art dental practice.' },
+        { author: 'Suzanne McEwen', cls: 'sage', quote: 'I\u2019ve been a patient by referral for 16 years. Dr. Puckett walked me through every step and put me at ease immediately. My day was pain free and pleasant because everyone put in extra time to make sure I was comfortable. My expectations were exceeded!' },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>
